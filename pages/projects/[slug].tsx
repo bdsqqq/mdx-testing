@@ -12,14 +12,16 @@ export async function getStaticPaths({
 }: GetStaticPathsContext): Promise<GetStaticPathsResult> {
   let paths: { params: { slug: string }; locale: string }[] = [];
   locales?.forEach((locale) => {
+    // filter the pages that belong to each locale
     let localeProjects = allProjects.filter((p) => p.lang == locale);
 
-    let temp = localeProjects.map((p) => ({
-      params: { slug: p.slug },
-      locale: locale,
-    }));
-
-    paths.push(...temp);
+    // add pages to paths only with its corresponding locale
+    paths.push(
+      ...localeProjects.map((p) => ({
+        params: { slug: p.slug },
+        locale: locale,
+      }))
+    );
   });
 
   return {
