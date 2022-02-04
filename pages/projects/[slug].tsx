@@ -36,6 +36,16 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   return { props: { project } };
 }
 
+const Component = () => {
+  return (
+    <div style={{ background: "black", width: "200px", height: "200px" }} />
+  );
+};
+
+const mdxComponents = {
+  Component,
+};
+
 const ProjectLayout = ({ project }: { project: Project }) => {
   const MDXContent = useMDXComponent(project.body.code);
   const router = useRouter();
@@ -64,7 +74,7 @@ const ProjectLayout = ({ project }: { project: Project }) => {
         <div>
           <h1>{project.title}</h1>
         </div>
-        <MDXContent />
+        <MDXContent components={mdxComponents} />
       </article>
     </>
   );
