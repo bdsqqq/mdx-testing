@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { allProjects } from ".contentlayer/data";
 import type { Project } from ".contentlayer/types";
-import { useEffect } from "react";
 import type { GetStaticPathsContext, GetStaticPathsResult } from "next";
 
 export async function getStaticPaths({
@@ -49,10 +48,6 @@ const mdxComponents = {
 const ProjectLayout = ({ project }: { project: Project }) => {
   const MDXContent = useMDXComponent(project.body.code);
   const router = useRouter();
-
-  useEffect(() => {
-    console.log(router);
-  }, [router]);
 
   return (
     <>
