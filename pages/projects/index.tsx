@@ -15,7 +15,11 @@ const Projects = ({ projects }: { projects: Project[] }) => {
       </Link>
       <ul>
         {projects.map((project) => (
-          <li key={project._id}>{project.title}</li>
+          <li key={project._id}>
+            <Link passHref href={`/projects/${project.slug}`}>
+              <a>{project.title}</a>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
