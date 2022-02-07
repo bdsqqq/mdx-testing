@@ -10,13 +10,13 @@ const Projects = ({ projects }: { projects: Project[] }) => {
 
   return (
     <div>
-      <Link href={`/${pathname}`} locale={locale == "en" ? "pt" : "en"}>
+      <Link href={`${pathname}`} locale={locale == "en" ? "pt" : "en"}>
         <a>change lang</a>
       </Link>
       <ul>
         {projects.map((project) => (
           <li key={project._id}>
-            <Link passHref href={`/projects/${project.slug}`}>
+            <Link passHref href={`projects/${project.slug}`}>
               <a>{project.title}</a>
             </Link>
           </li>
