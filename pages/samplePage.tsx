@@ -1,26 +1,24 @@
 import type { NextPage } from "next";
-import useTranslation from "next-translate/useTranslation";
-
 interface localizedPage {
   t: typeof translations["en"];
+  locale: "en" | "pt";
 }
 
-const Home: NextPage<localizedPage> = () => {
-  const { t, lang } = useTranslation("common");
-
+const Page: NextPage<localizedPage> = ({ t, locale }) => {
   return (
     <div>
-      <h1>{t("title")}</h1>
+      <h1>{t.title}</h1>
     </div>
   );
 };
 
-export default Home;
+export default Page;
 
-export function getStaticProps({ locale }: { locale: "en" | "pt" }) {
+export async function getStaticProps({ locale }: { locale: "en" | "pt" }) {
   return {
     props: {
       t: translations[locale],
+      locale,
     },
   };
 }
