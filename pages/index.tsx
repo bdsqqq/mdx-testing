@@ -69,17 +69,14 @@ type Leaves<T, D extends number = 10> = [D] extends [never]
   : "";
 
 const Home: NextPage = () => {
-  const { t, lang } = useTranslation("common");
-
-  const translate = (translationKey: Leaves<typeof commonNamespace>) => {
-    console.log(translationKey);
-
-    return t(translationKey);
+  const commonTranslation = useTranslation("common");
+  const t = (translationKey: Leaves<typeof commonNamespace>) => {
+    return commonTranslation.t(translationKey);
   };
 
   return (
     <div>
-      <h1>{translate("title")}</h1>
+      <h1>{t("title")}</h1>
     </div>
   );
 };
